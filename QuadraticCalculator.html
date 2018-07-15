@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quadratics Calculator</title>
+</head>
+
+<body>
+
+<h1>Quadratic Calculator</h1>
+
+a =
+<input id="a" type="number" value="0"> <br/> <br/>
+
+b =
+<input id="b" type="number" value="0"> <br/> <br/>
+
+c =
+<input id="c" type="number" value="0"> <br/><br/>
+
+<button type="button" style=" font-family: 'Courier New'; font-size: 80px;height: 200px; width: 1425px" onclick="calcRoot()"> Find Roots </button> <br/>
+
+
+
+<script>
+
+    function calcRoot() {
+        console.log("Running calcRoot");
+
+        //Step 1: Get number from box
+        a = document.getElementById("a").value;
+        b = document.getElementById("b").value;
+        c = document.getElementById("c").value;
+
+        //Step 2: Calculate roots
+        root1 = (((-1 * b) + (Math.sqrt(b * b - 4 * a * c))) / (2 * a));
+        root2 = (((-1 * b) - (Math.sqrt(b * b - 4 * a * c))) / (2 * a));
+
+        //Step 3: Display result
+        console.log(root1, root2)
+
+        //VAR = 0 or 1 CHECK
+        if (b == 0 && c == 0) {
+            if (a == 1) {
+                display = "x<sup>2</sup> = 0 <br/> <br/>";
+            } else {
+                display = a + "x<sup>2</sup> = 0 <br/> <br/>";
+            }
+        }
+        else if (b == 0) {
+            if (a == 1) {
+                display = "x<sup>2</sup> + " + c + " = 0 <br/> <br/>";
+            } else {
+                display = a + "x<sup>2</sup> + " + c + " = 0 <br/> <br/>";
+            }
+        }
+        else if (c == 0) {
+            if (a == 1 && b == 1) {
+                display = "x<sup>2</sup> + x = 0 <br/> <br/>";
+            }
+            else if (a == 1) {
+                display = "x<sup>2</sup> + " + b + "x = 0 <br/> <br/>";
+            }
+            else if (b == 1) {
+                display = a + "x<sup>2</sup> + x = 0 <br/> <br/>";
+            } else {
+                display = a + "x<sup>2</sup> + " + b + "x = 0 <br/> <br/>";
+            }
+        }
+        else if (a == 1 && b == 1) {
+            display = "x<sup>2</sup> + x + " + c + " = 0 <br/> <br/>";
+        }
+        else if (a == 1) {
+            display = "x<sup>2</sup> + " + b + "x + " + c + " = 0 <br/> <br/>";
+        }
+        else if (b == 1) {
+            display = a + "x<sup>2</sup> + x + " + c + " = 0 <br/> <br/>";
+        }
+        else {
+            display = a + "x<sup>2</sup> + " + b + "x + " + c + " = 0 <br/> <br/>";
+        }
+
+
+
+        //NAN CHECK
+        if (isNaN(root1) && isNaN(root2)) {
+            display = display + "There are no Roots";
+        }
+        else if (isNaN(root1)) {
+            display = display + "Root 1: No Root <br/> Root 2: x = "+ root2;
+        }
+        else if (isNaN(root2)) {
+            display = display + "Root 1: x =" + root1 + "<br/> Root 2: No Root";
+        } else {
+            display = display + "Root 1: x = " + root1 + "<br/> Root 2: x = "+ root2;
+        }
+
+        result = display.fontsize(6).fontcolor("blue");
+
+        document.getElementById("display").innerHTML = result;
+
+    }
+
+</script>
+
+<p id = "display"></p>
+
+</body>
+</html>
